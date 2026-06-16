@@ -6,9 +6,11 @@ jobs:
   build:
     runs-on: windows-latest
     steps:
-      - uses: actions/checkout@v4
-        with:
-          submodules: recursive
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Clone BakkesMod SDK
+        run: git clone --depth 1 https://github.com/bakkesmodorg/BakkesModSDK.git bakkesmodsdk
 
       - name: Configure CMake
         run: cmake -B build -A x64 -DCMAKE_BUILD_TYPE=Release
